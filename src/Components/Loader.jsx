@@ -1,10 +1,14 @@
 import React from 'react';
+import { Box, Stack } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Loader = () => {
     return (
-        <div>
-            loading component page
-        </div>
+        <Box>
+            <Stack justifyContent='center' alignItems='center'>
+                <CircularProgress color='secondary' />
+            </Stack>
+        </Box>
     );
 };
 

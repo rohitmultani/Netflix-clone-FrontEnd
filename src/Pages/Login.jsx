@@ -1,10 +1,10 @@
 import React from 'react';
-
+import { Box } from '@mui/material';
 const Login = () => {
     return (
-        <div>
+        <Box variant="section">
             Login page component
-        </div>
+        </Box>
     );
 };
 

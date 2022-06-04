@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import { Box } from '@mui/material';
 
 const NotFound = () => {
-    return (
-        <div>
-          Not found page component
-        </div>
-    );
+  return <Box variant="section">home page</Box>;
 };
 
 export default NotFound;

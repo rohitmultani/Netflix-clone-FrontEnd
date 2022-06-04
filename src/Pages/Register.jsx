@@ -1,10 +1,11 @@
 import React from 'react';
+import { Box } from '@mui/material';
 
 const Register = () => {
     return (
-        <div>
-         Register page component
-        </div>
+        <Box variant='section'>
+            Register page
+        </Box>
     );
 };
 
