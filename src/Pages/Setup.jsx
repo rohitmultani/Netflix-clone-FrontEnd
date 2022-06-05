@@ -3,6 +3,7 @@ import { Stack, Box, Typography, Button } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import { styled } from "@mui/material/styles";
+// import LargeButton from "../Components/UI/LargeButton";
 
 const ImageContainer = styled(Box)(({ theme }) => ({
   width: "260px",
@@ -53,7 +54,6 @@ const StyledLink = styled(Link)`
 const Setup = () => {
   return (
     <Container
-      Variant="section"
       maxWidth="lg"
       sx={{ height: "100vh", boxSizing: "border-box", paddingTop: "6rem" }}
     >
@@ -65,7 +65,7 @@ const Setup = () => {
           />
         </ImageContainer>
         <TextContainer
-          variant="section"
+          Variant="section"
           sx={{ textAlign: "center", width: "350px" }}
         >
           <Typography Variant="p" sx={{ fontSize: "1rem" }}>
@@ -88,9 +88,9 @@ const Setup = () => {
         </TextContainer>
 
         <StyledLink to="/register">
-          <LargeButton size="large">Large</LargeButton>
+          <LargeButton size="large">Next</LargeButton>
         </StyledLink>
-
+      
 
       </Stack>
     </Container>
