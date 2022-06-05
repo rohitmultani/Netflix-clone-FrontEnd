@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
-import { Stack, Box, Typography, Button } from "@mui/material";
+import { Stack, Box, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import { styled } from "@mui/material/styles";
-// import LargeButton from "../Components/UI/LargeButton";
+import LargeButton from "../Components/UI/LargeButton";
 
 const ImageContainer = styled(Box)(({ theme }) => ({
   width: "260px",
@@ -23,33 +22,6 @@ const TextContainer = styled(Box)(({ theme }) => ({
     textAlign: "center",
   },
 }));
-
-const LargeButton = styled(Button)(({ theme }) => ({
-  color: "#fff",
-  backgroundColor: "#e50914",
-  fontWeight: "500px",
-  fontSize: "24px",
-  minHeight: "64px",
-  borderRadius: "4px",
-  padding: "0.75rem 25.333px",
-  width: "350px",
-
-  "&:hover": {
-    backgroundColor: "#f6121d",
-  },
-}));
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-  }
-`;
 
 const Setup = () => {
   return (
@@ -87,11 +59,7 @@ const Setup = () => {
           </Typography>
         </TextContainer>
 
-        <StyledLink to="/register">
-          <LargeButton size="large">Next</LargeButton>
-        </StyledLink>
-      
-
+        <LargeButton link="/register" text="Next" />
       </Stack>
     </Container>
   );
