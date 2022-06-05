@@ -40,9 +40,11 @@ const Plans = () => {
                 <Typography  sx={{fontWeight:'bold'}}>Unlimited viewing on all your<br/>devices.</Typography>
                     </Stack>
             </Stack>
+
             <Box sx={{marginTop:'2rem'}}>
             <LargeButton link='/' text='Next'  />
             </Box>
+            
       </Stack>
     </Container>
   );
