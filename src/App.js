@@ -13,6 +13,7 @@ const NotFound = lazy( () => import('./Pages/NotFound') )
 const Setup = lazy( () => import('./Pages/Setup') )
 const Plans = lazy( () => import('./Pages/Plans') )
 const ChoosePlan = lazy( () => import('./Pages/ChoosePlan') )
+const CreditCard = lazy( () => import('./Pages/CreditCard') )
 
 const  App = () => {
   return (
@@ -30,6 +31,7 @@ const  App = () => {
       <Route  path='/setup' element={<Setup />}  />
       <Route  path='/plan' element={<Plans />}  />
       <Route  path='/Chooseplan' element={<ChoosePlan />}  />
+      <Route  path='/Creditcard' element={<CreditCard/>}  />
       <Route  path='*' element={<NotFound />}  />
     </Routes>
     </BrowserRouter>
