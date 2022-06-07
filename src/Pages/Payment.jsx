@@ -1,17 +1,13 @@
-import { Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import { Stack } from "@mui/material";
-import CreditForm from "../Components/CreditForm";
+import { Stack, Typography } from "@mui/material";
+// import LargeButton from "../Components/UI/LargeButton";
+import LinkButton from "../Components/UI/LinkButton";
 
-
-
-const CreditCard = () => {
-
- 
+const Payment = () => {
     return (
         <Container
         maxWidth="sm"
-        sx={{ height: "150vh", boxSizing: "border-box", paddingTop: "5rem" }}>
+        sx={{ height: "100vh", boxSizing: "border-box", paddingTop: "5rem" }}>
   
       <Stack justifyContent="space-around" alignItems="center" alignContent="center" gap={2}>
         <Box sx={{ width: "auto", height: "auto" }}>
@@ -29,14 +25,14 @@ const CreditCard = () => {
         <Typography variant="p" component='div' sx={{fontSize:'1.2rem' , color:'#333' , textAlign:'center' , fontWeight:'bold'}}>No commitments.<br/>Cancel online anytime.</Typography>
 
 
-            <Box sx={{marginTop:'1rem'}}>
-            <CreditForm />
+            <Box sx={{marginTop:'2rem'}}>
+            {/* <LargeButton link='/' text='Next'  /> */}
+            <LinkButton />
             </Box>
             
       </Stack>
     </Container>
- 
     );
 };
 
-export default CreditCard;
+export default Payment;

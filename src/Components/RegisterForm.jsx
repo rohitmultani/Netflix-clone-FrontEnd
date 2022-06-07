@@ -41,8 +41,6 @@ const RegisterForm = () => {
   const submitonHandler = (event) => {
     event.preventDefault();
     if (FormIsValid) {
-      localStorage.setItem("Email", formik.values.Email);
-      localStorage.setItem("Password", formik.values.Password);
       Dispatch(AuthenticationSliceActions.SignUp({Email:formik.values.Email , Password: formik.values.Password}))
     }
   };
