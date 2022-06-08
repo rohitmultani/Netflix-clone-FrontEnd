@@ -1,11 +1,15 @@
 import { Container , Box , Stack, Typography} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import TableComponent from '../Components/UI/TableComponent';
+import LargeButton from '../Components/UI/LargeButton';
+import { useSelector } from 'react-redux';
 
 const ChoosePlan = () => {
+
+    const planChosen = useSelector((state) => state.planChosen )
     return (
         <Container maxWidth="lg" >
-        <Box sx={{  height: '100vh' , padding:'2rem'}} >
+        <Box sx={{  height: '120vh' , padding:'2rem'}} >
             <Stack justifyContent='space-around' alignItems='flex-start' gap={1}>
             <Typography Variant="p" component='div' sx={{ fontSize: "0.8rem" }}>STEP <strong>2</strong> OF <strong>3</strong></Typography>
             <Typography variant="h3" component='div' sx={{ fontSize:'2rem' , fontWeight:'bold' }}>Choose the plan that’s right for you</Typography>
@@ -37,8 +41,10 @@ const ChoosePlan = () => {
 
             <TableComponent />
                 
-            </Stack>
+            </Stack >
 
+                <Stack sx={{width:'100%' , margin: '1rem'}} justifyContent='center' alignItems='center'> {  planChosen && <LargeButton link='/payment'  text='Next' size='large' /> }</Stack>
+              
             </Stack>
         </Box>
       </Container>

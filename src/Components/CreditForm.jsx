@@ -4,7 +4,9 @@ import styled from "@emotion/styled";
 import {  useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { AuthenticationSliceActions } from '../Redux/AuthenticationSlice'
+import { AuthenticationSliceActions } from '../Redux/AuthenticationSlice';
+import { UserRegisterHandler } from '../Redux/middleware/UserDataActions';
+
 
 const LargeButton = styled(Button)(({ theme }) => ({
   color: "#fff",
@@ -127,10 +129,11 @@ const CreditForm = () => {
 
 
     const submitonHandler = (event) => {
-        console.log('checked' , FormIsValid)
+
         event.preventDefault();
         if (FormIsValid) {
          Dispatch(AuthenticationSliceActions.SetUserData({FirstName: formik.values.FirstName , LastName: formik.values.LastName , CardNumber:  formik.values.CardNumber , phoneNumber: formik.values.phoneNumber}))
+       
         }
       };
 
