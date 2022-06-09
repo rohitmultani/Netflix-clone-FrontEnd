@@ -15,6 +15,7 @@ const Plans = lazy( () => import('./Pages/Plans') )
 const ChoosePlan = lazy( () => import('./Pages/ChoosePlan') )
 const Payment = lazy( () => import('./Pages/Payment') )
 const CreditCard = lazy( () => import('./Pages/CreditCard') )
+const PlanDetails = lazy( () => import('./Pages/PlanDetails') )
 
 const  App = () => {
   return (
@@ -30,6 +31,7 @@ const  App = () => {
       <Route  path='/Login' element={<Login />}  />
       <Route  path='/register' element={<Register />}  />
       <Route  path='/setup' element={<Setup />}  />
+      <Route  path='/plandetails' element={<PlanDetails />}  />
       <Route  path='/plan' element={<Plans />}  />
       <Route  path='/Chooseplan' element={<ChoosePlan />}  />
       <Route  path='/payment' element={<Payment/>}  />

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AuthenticationSliceActions } from "../Redux/AuthenticationSlice";
+import { UserLoginHandler } from "../Redux/middleware/UserDataActions";
 import "./style.css";
 
 const LargeButton = styled(Button)(({ theme }) => ({
@@ -33,7 +33,8 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const RegisterForm = () => {
+const LoginForm
+ = () => {
   const [EmailIsValid, setEmailIsValid] = useState(false);
   const [PasswordIsValid, setPasswordIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
@@ -42,12 +43,8 @@ const RegisterForm = () => {
   const submitonHandler = (event) => {
     event.preventDefault();
     if (FormIsValid) {
-      Dispatch(
-        AuthenticationSliceActions.SignUp({
-          Email: formik.values.Email,
-          Password: formik.values.Password,
-        })
-      );
+        console.log('data' , formik.values )
+      Dispatch(UserLoginHandler());
     }
   };
 
@@ -71,7 +68,7 @@ const RegisterForm = () => {
       errors.Password = "Required";
       setPasswordIsValid(false);
     } else if (values.Password.length < 5) {
-      errors.Password = "minium password is 5 digits";
+      errors.Password = "invalid password";
       setPasswordIsValid(false);
     } else {
       setPasswordIsValid(true);
@@ -139,7 +136,7 @@ const RegisterForm = () => {
 
       <LargeButton type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
         <StyledLink
-          to={FormIsValid && "/chooseplan"}
+          to={FormIsValid && "/home"}
           style={{ color: "white", textDecoration: "none" }}
         >
           Next
@@ -149,4 +146,5 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm
+;

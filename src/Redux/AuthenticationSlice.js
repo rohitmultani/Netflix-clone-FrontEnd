@@ -32,7 +32,6 @@ export const AuthenticationSlice = createSlice({
       state.token = "";
     },
     setUserPlan: (state , {payload}) => {
-      console.log(payload)
       if(payload) {
         state.userPlan = payload
         state.planChosen = true

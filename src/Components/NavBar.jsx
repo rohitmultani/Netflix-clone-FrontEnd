@@ -20,6 +20,7 @@ const NavBar = () => {
         marginLeft: "auto",
         marginRight: "auto",
         background: "transparent",
+        backgroundImage:`url()`
       }}
     >
       <Stack

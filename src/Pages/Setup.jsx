@@ -3,6 +3,9 @@ import { Container } from "@mui/system";
 import React from "react";
 import { styled } from "@mui/material/styles";
 import LargeButton from "../Components/UI/LargeButton";
+import imglink from "../assets/devices.png";
+
+
 
 const ImageContainer = styled(Box)(({ theme }) => ({
   width: "260px",
@@ -25,43 +28,40 @@ const TextContainer = styled(Box)(({ theme }) => ({
 
 const Setup = () => {
   return (
+
     <Container
-      maxWidth="lg"
-      sx={{ height: "100vh", boxSizing: "border-box", paddingTop: "6rem" }}
+      maxWidth='xs'
+      sx={{ height: "90vh", boxSizing: "border-box", paddingTop: "3rem" , backgroundColor:'rgba(7, 9, 17, 0.7)', marginBottom:'3rem'  }}
     >
-      <Stack justifyContent="center" alignItems="center" gap={1}>
+      <Typography Variant="p" component='div' sx={{ fontSize: "1rem" , color:'#FFFFFF' , textAlign:'center' , paddingBottom: "3rem" }}>STEP 1 OF 3</Typography>
+      <Stack justifyContent="center" alignItems="center" gap={2} >
         <ImageContainer>
-          <img
-            src="https://assets.nflxext.com/ffe/siteui/acquisition/simplicity/Devices.png"
-            alt="devices"
-          />
+          <img src={imglink} alt="devices" />
         </ImageContainer>
         <TextContainer
           Variant="section"
           sx={{ textAlign: "center", width: "350px" }}
         >
-          <Typography Variant="p" sx={{ fontSize: "1rem" }}>
-            STEP 1 OF 3
-          </Typography>
-          <Typography Variant="p" sx={{ fontSize: "2rem", fontWeight: "bold" }}>
+
+          <Typography Variant="p" sx={{ fontSize: "2rem", fontWeight: "bold" ,  color:'#FFFFFF' }}>
             Finish setting up your account
           </Typography>
           <Typography
             Variant="p"
             sx={{
               fontSize: "1.2rem",
-              paddingRight: "1rem",
-              paddingLeft: "1rem",
-            }}
-          >
+              textAlign:'center',
+              color:'rgb(255 255 255 / 73%)',
+              lineHeight:"41px",}}>
             Netflix is personalized for you. Create a password to watch on any
-            device at any time.
+            device<br/> at any time.
           </Typography>
         </TextContainer>
 
         <LargeButton link="/register" text="Next" />
       </Stack>
     </Container>
+
   );
 };
 

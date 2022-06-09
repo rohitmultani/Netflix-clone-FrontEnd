@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 const StyledLargeButton = styled(Button)(({ theme }) => ({
     color: "#fff",
-    backgroundColor: "#e50914",
+    backgroundColor: "#12C6B2",
     fontWeight: "500px",
     fontSize: "24px",
     minHeight: "64px",
@@ -13,7 +13,7 @@ const StyledLargeButton = styled(Button)(({ theme }) => ({
     width: "350px",
   
     "&:hover": {
-      backgroundColor: "#f6121d",
+      backgroundColor: "#12C6B2",
     },
   }));
   
@@ -31,8 +31,8 @@ const StyledLargeButton = styled(Button)(({ theme }) => ({
 
 const LargeButton = ({link , text , size}) => {
     return (
-        <StyledLink to={link}>
-        <StyledLargeButton size="large">{text}</StyledLargeButton>
+        <StyledLink to={link} >
+        <StyledLargeButton size="large" sx={{  minWidth: {lg:'400px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }}>{text}</StyledLargeButton>
       </StyledLink>
     );
 };
