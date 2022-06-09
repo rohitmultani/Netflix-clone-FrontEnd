@@ -100,7 +100,7 @@ const RegisterForm = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
-        alignItems: "flex-start",
+        alignItems: "center",
         marginTop: "1rem",
       }}
     >
