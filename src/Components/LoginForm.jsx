@@ -107,6 +107,7 @@ const LoginForm
         label="Email"
         color="secondary"
         placeholder="Enter a valid Email"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{
           width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'},
           color: "white",
@@ -125,6 +126,7 @@ const LoginForm
         label="password"
         color="secondary"
         placeholder="Enter a valid password"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{ width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'}, marginTop: "0.8rem" }}
         onChange={formik.handleChange}
         error={!!formik.errors.Password && formik.touched.Password}

@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField  } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useFormik } from "formik";
@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const RegisterForm = () => {
+const RegisterForm = ({classes}) => {
   const [EmailIsValid, setEmailIsValid] = useState(false);
   const [PasswordIsValid, setPasswordIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
@@ -110,9 +110,14 @@ const RegisterForm = () => {
         label="Email"
         color="secondary"
         placeholder="Enter a valid Email"
+        InputLabelProps={{ style: { color: "white" } }}
+
         sx={{
           width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'},
           color: "white",
+          '&::placeholder':{
+            color:'white'
+          }
         }}
         onChange={formik.handleChange}
         error={!!formik.errors.Email && formik.touched.Email}
@@ -128,6 +133,7 @@ const RegisterForm = () => {
         label="password"
         color="secondary"
         placeholder="Enter a valid password"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{ width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'}, marginTop: "0.8rem" }}
         onChange={formik.handleChange}
         error={!!formik.errors.Password && formik.touched.Password}
@@ -136,6 +142,8 @@ const RegisterForm = () => {
         onBlur={formik.handleBlur}
         FormHelperTextProps={{ style: { backgroundColor: "transparent" } }}
       />
+
+
 
       <LargeButton type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
         <StyledLink

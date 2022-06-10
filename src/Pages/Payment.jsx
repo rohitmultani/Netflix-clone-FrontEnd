@@ -15,7 +15,7 @@ const Payment = () => {
             src={imgageLink}
             alt="checked"
             height="50px"
-            width="50px"
+            width="62px"
           />
         </Box>
 

@@ -190,6 +190,7 @@ const CreditForm = () => {
         label="FirstName"
         color="secondary"
         placeholder="Enter a valid Name"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{ width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" } }}
         onChange={formik.handleChange}
         error={!!formik.errors.FirstName && formik.touched.FirstName}
@@ -204,6 +205,7 @@ const CreditForm = () => {
         label="LastName"
         color="secondary"
         placeholder="Enter a valid Name"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{
           width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
           marginTop: "0.8rem",
@@ -228,6 +230,7 @@ const CreditForm = () => {
           label="CardNumber"
           color="secondary"
           placeholder="Enter a valid Name"
+          InputLabelProps={{ style: { color: "white" } }}
           sx={{
             width: { lg: "300px", md: "200px", sm: "150px", xs: "222px" },
             marginTop: "0.8rem",
@@ -246,6 +249,7 @@ const CreditForm = () => {
           label="CVV"
           color="secondary"
           placeholder="CVV"
+          InputLabelProps={{ style: { color: "white" } }}
           sx={{
             width: { lg: "140px", md: "100px", sm: "70px", xs: "222px" },
             marginTop: "0.8rem",
@@ -264,6 +268,7 @@ const CreditForm = () => {
         label="phoneNumber"
         color="secondary"
         placeholder="Enter a valid Number"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{
           width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
           marginTop: "0.8rem",
