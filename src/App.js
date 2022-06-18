@@ -16,7 +16,7 @@ const ChoosePlan = lazy( () => import('./Pages/ChoosePlan') )
 const Payment = lazy( () => import('./Pages/Payment') )
 const CreditCard = lazy( () => import('./Pages/CreditCard') )
 const PlanDetails = lazy( () => import('./Pages/PlanDetails') )
-
+const Choosedevice = lazy ( () => import('./Pages/ChooseDevice') )
 const  App = () => {
   return (
      <>
@@ -36,6 +36,7 @@ const  App = () => {
       <Route  path='/Chooseplan' element={<ChoosePlan />}  />
       <Route  path='/payment' element={<Payment/>}  />
       <Route  path='/creditCard' element={<CreditCard/>}  />
+      <Route  path='/choosedevice' element={<Choosedevice/>}  />
       <Route  path='*' element={<NotFound />}  />
     </Routes>
     </BrowserRouter>

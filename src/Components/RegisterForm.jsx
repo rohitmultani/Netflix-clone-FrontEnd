@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AuthenticationSliceActions } from "../Redux/AuthenticationSlice";
-import "./style.css";
+import "./Styles/style.css"
 
 const LargeButton = styled(Button)(({ theme }) => ({
   color: "#fff",

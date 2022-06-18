@@ -4,13 +4,13 @@ import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AuthenticationSliceActions } from "../Redux/AuthenticationSlice";
+// import { AuthenticationSliceActions } from "../Redux/AuthenticationSlice";
 import { UserRegisterHandler } from "../Redux/middleware/UserDataActions";
-import "./style.css";
+import "./Styles/style.css";
 
 const LargeButton = styled(Button)(({ theme }) => ({
   minWidth: { lg: "350px", md: "300px", sm: "auto", xs: "auto" },
-  height: { md: "64px", sm: "40px", sx: "auto" },
+  height: { md: "64px", sm: "40px", xs: "auto" },
   padding: {
     lg: "0.75rem 25.333px",
     md: "0.5rem 20px",
@@ -162,12 +162,18 @@ const CreditForm = () => {
     event.preventDefault();
     if (FormIsValid) {
       Dispatch(
-        AuthenticationSliceActions.SetUserData({
-          FirstName: formik.values.FirstName,
-          LastName: formik.values.LastName,
-          CardNumber: formik.values.CardNumber,
-          phoneNumber: formik.values.phoneNumber,
-        })
+        // AuthenticationSliceActions.SetUserData({
+        //   FirstName: formik.values.FirstName,
+        //   LastName: formik.values.LastName,
+        //   CardNumber: formik.values.CardNumber,
+        //   phoneNumber: formik.values.phoneNumber,
+        // })
+        UserRegisterHandler({
+            FirstName: formik.values.FirstName,
+            LastName: formik.values.LastName,
+            CardNumber: formik.values.CardNumber,
+            phoneNumber: formik.values.phoneNumber,
+          })
       );
     }
   };
