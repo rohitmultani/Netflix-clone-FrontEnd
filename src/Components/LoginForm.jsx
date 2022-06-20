@@ -44,7 +44,7 @@ const LoginForm
     event.preventDefault();
     if (FormIsValid) {
         console.log('data' , formik.values )
-      Dispatch(UserLoginHandler());
+      Dispatch(UserLoginHandler({userName: formik.values.Email , Password: formik.values.Password}));
     }
   };
 

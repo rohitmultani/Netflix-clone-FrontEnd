@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AuthenticationSliceActions } from "../Redux/AuthenticationSlice";
+import {UserRegisterHandler} from '../Redux/middleware/UserDataActions'
 import "./Styles/style.css"
 
 const LargeButton = styled(Button)(({ theme }) => ({
@@ -43,7 +43,7 @@ const RegisterForm = ({classes}) => {
     event.preventDefault();
     if (FormIsValid) {
       Dispatch(
-        AuthenticationSliceActions.SignUp({
+        UserRegisterHandler({
           Email: formik.values.Email,
           Password: formik.values.Password,
         })
