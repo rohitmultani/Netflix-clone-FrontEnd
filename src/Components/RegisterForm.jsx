@@ -1,11 +1,12 @@
-import { Box, Button, TextField  } from "@mui/material";
+import { Box, Button, TextField, Typography  } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import {UserRegisterHandler} from '../Redux/middleware/UserDataActions'
-import "./Styles/style.css"
+import "./Styles/style.css";
+
 
 const LargeButton = styled(Button)(({ theme }) => ({
   color: "#fff",
@@ -38,6 +39,9 @@ const RegisterForm = ({classes}) => {
   const [PasswordIsValid, setPasswordIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
   const Dispatch = useDispatch();
+  const requestError = useSelector((state) => state.error);
+  const isLoading = useSelector((state) => state.isLoading)
+
 
   const submitonHandler = (event) => {
     event.preventDefault();
@@ -48,7 +52,7 @@ const RegisterForm = ({classes}) => {
           Password: formik.values.Password,
         })
       );
-    }
+    } 
   };
 
   const validate = (values) => {
@@ -147,12 +151,14 @@ const RegisterForm = ({classes}) => {
 
       <LargeButton type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
         <StyledLink
-          to={FormIsValid && "/chooseplan"}
+          to={FormIsValid  && "/chooseplan"}
           style={{ color: "white", textDecoration: "none" }}
         >
           Next
         </StyledLink>
       </LargeButton>
+
+      { requestError && !isLoading && <Typography  component='p' >{requestError}</Typography>}
     </Box>
   );
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { creditCardHandler } from "../Redux/middleware/UserDataActions";
 import "./Styles/style.css";
 
@@ -50,6 +50,7 @@ const CreditForm = () => {
   const [Cvv, setCvvIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
   const Dispatch = useDispatch();
+  const requestError = useSelector((state) => state.error)
 
   const validate = (values) => {
     const errors = {
@@ -165,6 +166,7 @@ const CreditForm = () => {
             FirstName: formik.values.FirstName,
             LastName: formik.values.LastName,
             CardNumber: formik.values.CardNumber,
+            cvv:+formik.values.CVV,
             phoneNumber: formik.values.phoneNumber,
           })
       );
@@ -287,7 +289,7 @@ const CreditForm = () => {
         sx={{ minWidth: { lg: "450px", md: "300px", sm: "auto", xs: "auto" } }}
       >
         <StyledLink
-          to={FormIsValid && "/login"}
+          to={FormIsValid && requestError  && "/Home"}
           style={{ color: "white", textDecoration: "none" }}
         >
           Next

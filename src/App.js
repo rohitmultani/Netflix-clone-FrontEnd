@@ -5,6 +5,11 @@ import NavBar from './Components/NavBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import {  ThemeProvider } from "@mui/material";
 import { Theme } from './styles/Theme';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import AuthenticationSliceActions from './Redux/AuthenticationSlice';
+
+
 
 const Home = lazy(() =>  import('./Pages/Home') )
 const Login = lazy(() =>  import('./Pages/Login') )
@@ -17,7 +22,21 @@ const Payment = lazy( () => import('./Pages/Payment') )
 const CreditCard = lazy( () => import('./Pages/CreditCard') )
 const PlanDetails = lazy( () => import('./Pages/PlanDetails') )
 const Choosedevice = lazy ( () => import('./Pages/ChooseDevice') )
+
+
 const  App = () => {
+  const Dispatch =  useDispatch()
+  useEffect(() => {
+    const {token} = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
+
+
+if(token){
+  Dispatch(AuthenticationSliceActions.logIn(token))}
+
+}, [])
+
+
+
   return (
      <>
      <ThemeProvider theme={Theme}>

@@ -41,7 +41,8 @@ const ChoosePlan = () => {
   const Dispatch = useDispatch();
 
   const planChosen = useSelector((state) => state.planChosen);
-  const userPlan = useSelector((state) =>  state.userPlan )
+  const userPlan = useSelector((state) =>  state.userPlan );
+  const planError = useSelector( (state) => state.error );
 
   const choosePlanHandler = () => {
 
@@ -89,7 +90,7 @@ const ChoosePlan = () => {
           >
             {" "}
             {planChosen && (
-              <StyledLink to='/payment' onClick={choosePlanHandler}>
+              <StyledLink to={ !planError && '/payment'} onClick={choosePlanHandler}>
                 <StyledLargeButton
                   size="large"
                   sx={{
@@ -113,6 +114,8 @@ const ChoosePlan = () => {
               </StyledLink>
             )}
           </Stack>
+
+          {planError && <Typography variant="p">{planError}</Typography>}
         </Stack>
       </Box>
     </Container>
