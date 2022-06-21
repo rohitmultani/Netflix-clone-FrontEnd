@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:'' , userPlan: '' , planChosen: false};
+const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:'' , userPlan: '' , planChosen: false , error : '' };
 
-export const AuthenticationSlice = createSlice({
+ export const AuthenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
@@ -30,15 +30,23 @@ export const AuthenticationSlice = createSlice({
     logOut: (state) => {
       state.IsloggedIn = false;
       state.token = "";
+      localStorage.removeItem('token');
     },
     setUserPlan: (state , {payload}) => {
       if(payload) {
         state.userPlan = payload
         state.planChosen = true
        
+      }},
+      setError : (state , {payload}) => {
+        state.error = payload;
       }
+
     }
   },
-});
+);
 
-export const AuthenticationSliceActions = AuthenticationSlice.actions;
+
+const  AuthenticationSliceActions = AuthenticationSlice.actions;
+export default   AuthenticationSliceActions 
+

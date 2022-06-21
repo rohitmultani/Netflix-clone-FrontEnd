@@ -8,7 +8,7 @@ import Paper from "@mui/material/Paper";
 import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AuthenticationSliceActions } from "../../Redux/AuthenticationSlice";
+import  AuthenticationSliceActions  from "../../Redux/AuthenticationSlice";
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
@@ -65,7 +65,7 @@ const TableComponent = () => {
     setIsSelectedPremium(true);
     setIsSelectedBasic(false);
     setIsSelectedStandard(false);
-    Dispatch(AuthenticationSliceActions.setUserPlan("Premium"));
+    Dispatch(AuthenticationSliceActions.setUserPlan("Premmium"));
   };
 
   const rows = [

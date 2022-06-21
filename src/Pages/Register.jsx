@@ -13,6 +13,7 @@ const Register = () => {
             <Typography variant='h4' sx={{  fontWeight:'bold' , textAlign:'left'}}>Create a password to start <br/> your membership</Typography>
             <Typography variant='p' sx={{  fontSize:'1.2rem' , fontFamily:'sans-serif' , textAlign:'left' , color:'rgb(255 255 255 / 85%)'}} >Just a few more steps and you're done!<br/>We hate paperwork, too.</Typography>
             <RegisterForm />
+            {}
             </Stack>
            
         </Container>

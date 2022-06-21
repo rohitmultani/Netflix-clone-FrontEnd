@@ -2,6 +2,8 @@ import React from "react";
 import { Box, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import { useSelector , useDispatch } from 'react-redux';
+import  AuthenticationSliceActions  from '../Redux/AuthenticationSlice';
 
 
 const StyledLink = styled(Link)`
@@ -13,6 +15,14 @@ text-decoration: none;
 `;
 
 const NavBar = () => {
+
+  const IsloggedIn = useSelector( (state) => state.IsloggedIn )
+  const Dispatch = useDispatch()
+
+  const logOutHandler = () => {
+    Dispatch(AuthenticationSliceActions.logOut())
+  }
+
   return (
     <Box
       variant="header"
@@ -63,7 +73,8 @@ const NavBar = () => {
               textDecoration: "none !important",
             }}
           >
-            <StyledLink to="/Setup" style={{color:'#12C6B2' , fontSize:'1rem'}}>Sign up</StyledLink>
+           { !IsloggedIn && <StyledLink to="/Setup" style={{color:'#12C6B2' , fontSize:'1rem'}}>Sign up</StyledLink> }
+           { IsloggedIn && <StyledLink to="/home" onClick={logOutHandler} style={{color:'#12C6B2' , fontSize:'1rem'}}>log out</StyledLink> }
           </Stack>
         </Box>
       </Stack>
