@@ -26,13 +26,14 @@ const Choosedevice = lazy ( () => import('./Pages/ChooseDevice') )
 
 const  App = () => {
   const Dispatch =  useDispatch()
-useEffect(() => {
-const tokenData = localStorage.getItem('token');
+  useEffect(() => {
+    const {token} = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
 
-if(tokenData){
-  Dispatch(AuthenticationSliceActions.logIn(tokenData))}
 
-}, [Dispatch])
+if(token){
+  Dispatch(AuthenticationSliceActions.logIn(token))}
+
+}, [])
 
 
 

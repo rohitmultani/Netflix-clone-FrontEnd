@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:'' , userPlan: '' , planChosen: false , error : '' };
+const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:'' , userPlan: '' , planChosen: false , error : '' , isLoading :false , planRequestError : false };
 
  export const AuthenticationSlice = createSlice({
   name: "authentication",
@@ -10,12 +10,18 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
       if (payload) {
         state.Email = payload.Email;
         state.Password = payload.Password;
+        // state.token = payload.token
       }
     },
     logIn: (state, { payload }) => {
       if (payload) {
         state.IsloggedIn = true;
-        state.token = payload.token;
+        if ( !payload.token || payload.token === '' ){
+          return
+        }else{
+          state.token = payload.token;
+        }
+
       }
     },
     SetUserData : ( state , { payload } ) => {
@@ -30,7 +36,7 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
     logOut: (state) => {
       state.IsloggedIn = false;
       state.token = "";
-      localStorage.removeItem('token');
+      localStorage.setItem('token' , '');
     },
     setUserPlan: (state , {payload}) => {
       if(payload) {
@@ -40,6 +46,12 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
       }},
       setError : (state , {payload}) => {
         state.error = payload;
+      },
+      setIsLoading: (state , {payload}) => {
+        state.isLoading = payload
+      },
+      setPlanError : (state , {payload}) => {
+        state.planRequestError = payload
       }
 
     }
