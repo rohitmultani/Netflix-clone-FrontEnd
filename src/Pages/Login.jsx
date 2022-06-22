@@ -24,7 +24,7 @@ const Login = () => {
             <Typography variant='h4' sx={{  fontWeight:'bold' , textAlign:'left'}}>Sign In</Typography>
             <LoginForm />
             <Stack direction='row' gap={1}>
-            <Typography variant='p' sx={{  fontSize:'1.2rem' , fontFamily:'sans-serif' , textAlign:'left' , color:'#c4c4c4d9'}} >New to Netflix?</Typography>
+            <Typography variant='p' sx={{  fontSize:'1.2rem' , fontFamily:'sans-serif' , textAlign:'left' , color:'#c4c4c4d9'}} >New to STRIMIX?</Typography>
             <Typography variant='p' sx={{  fontSize:'1.2rem' , fontFamily:'sans-serif' , textAlign:'left' , color:'#FFFFFF'}} ><StyledLink to='/setup' style={{ color: "white", textDecoration: "none" }}>Sign up now.</StyledLink></Typography>
             </Stack>
             </Stack>

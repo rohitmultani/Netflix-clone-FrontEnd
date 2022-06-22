@@ -104,3 +104,21 @@ export const creditCardHandler = (userData) => {
         })
     }
 }
+
+export const setUserDevice = (userDevice) => {
+    console.log(userDevice)
+    const Navigate = userDevice.Navigate
+    const data =  userDevice.device 
+    return async (Dispatch) => {
+        Dispatch(AuthenticationSliceActions.setIsLoading(true))
+        Dispatch(AuthenticationSliceActions.setError(''))
+        await axios.post('http://localhost:3001/user/login' , data , config).then((res) => {
+        Dispatch(AuthenticationSliceActions.setUserDevice(data))
+        Dispatch(AuthenticationSliceActions.setIsLoading(false))
+        Navigate('/Home')
+        }).catch(() => {
+         Dispatch(AuthenticationSliceActions.setIsLoading(false));
+         Dispatch(AuthenticationSliceActions.setError('Some Thing Went Wrong'));
+        })
+    }
+}
