@@ -1,6 +1,7 @@
-import { Button } from '@mui/material'
+import { Button } from '@mui/material';
 import { styled } from "@mui/material/styles";
 import {Link} from 'react-router-dom';
+
 
 const StyledLargeButton = styled(Button)(({ theme }) => ({
     color: "#fff",
@@ -29,9 +30,11 @@ const StyledLargeButton = styled(Button)(({ theme }) => ({
     }
   `;
 
-const LargeButton = ({link , text , size}) => {
+const LargeButton = ({link , text  , loadingstate}) => {
+
     return (
         <StyledLink to={link} >
+
         <StyledLargeButton size="large" sx={{  minWidth: {lg:'400px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }}>{text}</StyledLargeButton>
       </StyledLink>
     );

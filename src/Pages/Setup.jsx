@@ -53,7 +53,7 @@ const Setup = () => {
               textAlign:'center',
               color:'rgb(255 255 255 / 73%)',
               lineHeight:"41px",}}>
-            Netflix is personalized for you. Create a password to watch on any
+            STRIMIX is personalized for you. Create a password to watch on any
             device<br/> at any time.
           </Typography>
         </TextContainer>

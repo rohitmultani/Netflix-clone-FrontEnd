@@ -124,7 +124,7 @@ const TableComponent = () => {
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell onClick={SetBasicHandler} align="right">
+            <TableCell sx={{cursor:'pointer'}} onClick={SetBasicHandler} align="right">
               <StyledDiv>
                 <Typography
                   variant="p"
@@ -134,7 +134,7 @@ const TableComponent = () => {
                 </Typography>
               </StyledDiv>
             </TableCell>
-            <TableCell onClick={SetStandardHandler} align="right">
+            <TableCell sx={{cursor:'pointer'}} onClick={SetStandardHandler} align="right">
               <StyledDiv>
                 <Typography
                   variant="p"
@@ -144,7 +144,7 @@ const TableComponent = () => {
                 </Typography>
               </StyledDiv>
             </TableCell>
-            <TableCell onClick={SetPremiumHandler} align="right">
+            <TableCell sx={{cursor:'pointer'}} onClick={SetPremiumHandler} align="right">
               <StyledDiv>
                 <Typography
                   variant="p"
@@ -160,7 +160,7 @@ const TableComponent = () => {
           {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 }  }}
             >
               <TableCell component="th" scope="row" sx={{ color:'rgba(255, 255, 255, 0.8)'}}>
                 {row.name}
@@ -169,6 +169,7 @@ const TableComponent = () => {
                 onClick={SetBasicHandler}
                 align="center"
                 sx={{
+                  cursor:'pointer',
                   fontWeight: "bold",
                   fontFamily: "sans-serif",
                   color: SelectedBasic ? "#12C6B2" : "rgba(255, 255, 255, 0.8)",
@@ -180,6 +181,7 @@ const TableComponent = () => {
                 onClick={SetStandardHandler}
                 align="center"
                 sx={{
+                  cursor:'pointer',
                   fontWeight: "bold",
                   fontFamily: "sans-serif",
                   color: SelectedStandard ? "#12C6B2" : "rgba(255, 255, 255, 0.8)",
@@ -191,6 +193,7 @@ const TableComponent = () => {
                 onClick={SetPremiumHandler}
                 align="center"
                 sx={{
+                  cursor:'pointer',
                   fontWeight: "bold",
                   fontFamily: "sans-serif",
                   color: SelectedPremium ? "#12C6B2" : "rgba(255, 255, 255, 0.8)",

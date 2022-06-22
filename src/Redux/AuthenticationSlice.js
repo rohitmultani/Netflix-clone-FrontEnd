@@ -10,7 +10,7 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
       if (payload) {
         state.Email = payload.Email;
         state.Password = payload.Password;
-        // state.token = payload.token
+        state.token = payload.token
       }
     },
     logIn: (state, { payload }) => {
@@ -37,6 +37,7 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
       state.IsloggedIn = false;
       state.token = "";
       localStorage.setItem('token' , '');
+      localStorage.clear()
     },
     setUserPlan: (state , {payload}) => {
       if(payload) {
