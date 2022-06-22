@@ -25,16 +25,11 @@ const App = () => {
   const Dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(localStorage.getItem("token"));
+  
     const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : "";
-    // const token = JSON.parse(localStorage.getItem("token"))
-    //   ? JSON.parse(localStorage.getItem("token"))
-    //   : "";
+    const authenticationData = localStorage.getItem('Authentication') ? JSON.parse(localStorage.getItem('Authentication')) : '';
     const { FirstName, LastName, PhoneNumber, cardNumber } =
-      localStorage.getItem("userdata")
-        ? JSON.parse(localStorage.getItem("userdata"))
-        : "";
-    console.log(FirstName, LastName, PhoneNumber, cardNumber);
+      localStorage.getItem("userdata") ? JSON.parse(localStorage.getItem("userdata")): "";
     if (token) {
       Dispatch(AuthenticationSliceActions.logIn({ token }));
       Dispatch(
@@ -44,7 +39,8 @@ const App = () => {
           CardNumber: cardNumber,
           phoneNumber: PhoneNumber,
         })
-      );
+        );
+        Dispatch(AuthenticationSliceActions.SignUp({Email:authenticationData.email , Password: authenticationData.password}))
     }
   }, []);
 

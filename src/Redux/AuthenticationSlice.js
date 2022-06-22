@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:'' , userPlan: '' , planChosen: false , error : '' , isLoading :false , planRequestError : false };
+const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:'' , userPlan: '' , planChosen: false , error : '' , isLoading :false , planRequestError : false , userDevice : '' };
 
  export const AuthenticationSlice = createSlice({
   name: "authentication",
@@ -45,15 +45,18 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
         state.planChosen = true
        
       }},
-      setError : (state , {payload}) => {
+    setError : (state , {payload}) => {
         state.error = payload;
       },
-      setIsLoading: (state , {payload}) => {
+    setIsLoading: (state , {payload}) => {
         state.isLoading = payload
       },
-      setPlanError : (state , {payload}) => {
+    setPlanError : (state , {payload}) => {
         state.planRequestError = payload
-      }
+      },
+    setUserDevice : (state , {payload}) => {
+      state.userDevice = payload
+    }
 
     }
   },
