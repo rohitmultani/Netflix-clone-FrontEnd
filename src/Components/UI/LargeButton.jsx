@@ -31,7 +31,7 @@ const StyledLargeButton = styled(Button)(({ theme }) => ({
   `;
 
 const LargeButton = ({link , text  , loadingstate}) => {
-  console.log(loadingstate)
+
     return (
         <StyledLink to={link} >
 

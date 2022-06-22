@@ -1,11 +1,11 @@
 import { Box, TextField, Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { creditCardHandler } from "../Redux/middleware/UserDataActions";
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from "@mui/lab/LoadingButton";
 import AuthenticationSliceActions from "../Redux/AuthenticationSlice";
 import "./Styles/style.css";
 
@@ -32,7 +32,6 @@ import "./Styles/style.css";
 //     backgroundColor: "#169889",
 //   },
 // }));
-
 
 const LargeButton = styled(LoadingButton)(({ theme }) => ({
   minWidth: { lg: "350px", md: "300px", sm: "auto", xs: "auto" },
@@ -77,9 +76,9 @@ const CreditForm = () => {
   const [Cvv, setCvvIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
   const Dispatch = useDispatch();
-  const requestError = useSelector((state) => state.error)
-  const isLoading = useSelector((state) => state.isLoading );
-
+  const requestError = useSelector((state) => state.error);
+  const isLoading = useSelector((state) => state.isLoading);
+  const Navigate = useNavigate("/Chooseplan");
 
   const validate = (values) => {
     const errors = {
@@ -127,7 +126,7 @@ const CreditForm = () => {
       errors.CardNumber = "Required";
       setCardNumberIsValid(false);
     } else if (values.CardNumber.length !== 15) {
-      errors.CardNumber = "Card Number should be 15 digits";
+      errors.CardNumber = "minimum Card Number is 15 ";
       setCardNumberIsValid(false);
     } else if (!isFinite(values.CardNumber)) {
       errors.CardNumber = "Invalid Card Number";
@@ -143,25 +142,18 @@ const CreditForm = () => {
       errors.CVV = "Required";
       setCvvIsValid(false);
     } else if (values.CVV.length !== 3) {
-      errors.CVV = "CVV should be 3 digits";
+      errors.CVV = "CVV is 3 digits";
       setCvvIsValid(false);
     } else if (!isFinite(values.CVV)) {
-      errors.CVV = "Invalid CVV Number";
+      errors.CVV = "Invalid CVV";
       setCvvIsValid(false);
     } else if (!isFinite(values.CVV)) {
-      errors.CVV = "Invalid CVV Number";
+      errors.CVV = "Invalid CVV";
       setCvvIsValid(false);
     } else {
       setCvvIsValid(true);
     }
 
-    console.log(
-      FirstNameIsValid,
-      LastNameIsValid,
-      CardNumberIsValid,
-      PhoneNumberIsValid,
-      Cvv
-    );
     if (
       FirstNameIsValid &&
       LastNameIsValid &&
@@ -187,31 +179,33 @@ const CreditForm = () => {
   });
 
   const submitonHandler = (event) => {
-    console.log(formik.values);
     event.preventDefault();
     if (FormIsValid) {
       Dispatch(
         creditCardHandler({
-            FirstName: formik.values.FirstName,
-            LastName: formik.values.LastName,
-            CardNumber: formik.values.CardNumber,
-            cvv:+formik.values.CVV,
-            phoneNumber: formik.values.phoneNumber,
-          })
+          FirstName: formik.values.FirstName,
+          LastName: formik.values.LastName,
+          CardNumber: formik.values.CardNumber,
+          cvv: +formik.values.CVV,
+          phoneNumber: formik.values.phoneNumber,
+          Navigate,
+        })
       );
-    }else{
-      formik.errors.FirstName = 'required'
-      formik.errors.LastName = 'required'
-      formik.errors.CardNumber = 'required'
-      formik.errors.CVV = 'required'
-      formik.errors.phoneNumber = 'required'
+    } else {
+      formik.errors.FirstName = "required";
+      formik.errors.LastName = "required";
+      formik.errors.CardNumber = "required";
+      formik.errors.CVV = "required";
+      formik.errors.phoneNumber = "required";
       formik.touched.FirstName = true;
       formik.touched.LastName = true;
       formik.touched.CVV = true;
       formik.touched.CardNumber = true;
       formik.touched.phoneNumber = true;
-      
-      Dispatch(AuthenticationSliceActions.setError('please Fill the form first'))
+
+      Dispatch(
+        AuthenticationSliceActions.setError("please Fill the form first")
+      );
     }
   };
 
@@ -225,6 +219,7 @@ const CreditForm = () => {
         justifyContent: "space-around",
         alignItems: "center",
         marginTop: "1rem",
+        width: { sm: "460px" },
       }}
     >
       <TextField
@@ -234,7 +229,7 @@ const CreditForm = () => {
         color="secondary"
         placeholder="Enter a valid Name"
         InputLabelProps={{ style: { color: "white" } }}
-        sx={{ width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" } }}
+        sx={{ width: { lg: "450px", md: "300px", sm: "100%", xs: "auto" } }}
         onChange={formik.handleChange}
         error={!!formik.errors.FirstName && formik.touched.FirstName}
         helperText={formik.errors.FirstName}
@@ -250,7 +245,7 @@ const CreditForm = () => {
         placeholder="Enter a valid Name"
         InputLabelProps={{ style: { color: "white" } }}
         sx={{
-          width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
+          width: { lg: "450px", md: "300px", sm: "100%", xs: "auto" },
           marginTop: "0.8rem",
         }}
         onChange={formik.handleChange}
@@ -263,7 +258,13 @@ const CreditForm = () => {
       <Stack
         direction="row"
         alignItems="center"
-        sx={{ width: "100%", padding: "0px", margin: "0px" }}
+        sx={{
+          width: "100%",
+          padding: "0px",
+          margin: "0px",
+          flexDirection: { lg: "row", md: "row", sm: "row", xs: "column" },
+          height: {}
+        }}
         justifyContent="space-around"
         flexWrap="wrap"
       >
@@ -275,7 +276,7 @@ const CreditForm = () => {
           placeholder="Enter a valid Name"
           InputLabelProps={{ style: { color: "white" } }}
           sx={{
-            width: { lg: "300px", md: "200px", sm: "150px", xs: "auto" },
+            width: { lg: "300px", md: "200px", sm: "59%", xs: "auto" },
             marginTop: "0.8rem",
             marginRight: { sm: "0.1rem", lg: "0.5rem" },
           }}
@@ -294,7 +295,7 @@ const CreditForm = () => {
           placeholder="CVV"
           InputLabelProps={{ style: { color: "white" } }}
           sx={{
-            width: { lg: "140px", md: "100px", sm: "70px", xs: "auto" },
+            width: { lg: "140px", md: "100px", sm: "40%", xs: "auto" },
             marginTop: "0.8rem",
           }}
           onChange={formik.handleChange}
@@ -313,7 +314,7 @@ const CreditForm = () => {
         placeholder="Enter a valid Number"
         InputLabelProps={{ style: { color: "white" } }}
         sx={{
-          width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
+          width: { lg: "450px", md: "300px", sm: "100%", xs: "auto" },
           marginTop: "0.8rem",
         }}
         onChange={formik.handleChange}
@@ -339,15 +340,38 @@ const CreditForm = () => {
       </LargeButton> */}
 
       <StyledLink
-        to={FormIsValid  && !requestError && "/Home"}
-        style={{ color: "white", textDecoration: "none" }}>
-      <LargeButton loading={isLoading} loadingIndicator='loading...'  type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
+        to={FormIsValid && !requestError && "/choosedevice"}
+        style={{ color: "white", textDecoration: "none" }}
+      >
+        <LargeButton
+          loading={isLoading}
+          loadingIndicator="loading..."
+          type="submit"
+          size="large"
+          onClick={submitonHandler}
+          sx={{
+            minWidth: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
+            height: { md: "64px", sm: "40px", sx: "auto" },
+            padding: {
+              lg: "0.75rem 25.333px",
+              md: "0.5rem 20px",
+              sm: "0.3rem 15px",
+              sx: "0.1rem 5px",
+            },
+          }}
+        >
           Next
-      </LargeButton>
-        </StyledLink>
+        </LargeButton>
+      </StyledLink>
 
-        {requestError  && (
-        <Typography component="p" textAlign='center' sx={{color:'white' , width:'100%'}}>{requestError}</Typography>
+      {requestError && (
+        <Typography
+          component="p"
+          textAlign="center"
+          sx={{ color: "white", width: "100%" }}
+        >
+          {requestError}
+        </Typography>
       )}
     </Box>
   );

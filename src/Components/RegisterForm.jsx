@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserRegisterHandler } from "../Redux/middleware/UserDataActions";
 import AuthenticationSliceActions from "../Redux/AuthenticationSlice";
@@ -59,15 +60,16 @@ const RegisterForm = ({ classes }) => {
   const Dispatch = useDispatch();
   const requestError = useSelector((state) => state.error);
   const isLoading = useSelector((state) => state.isLoading);
+  const Navigate = useNavigate()
 
   const submitonHandler = (event) => {
     event.preventDefault();
-    console.log(requestError)
     if (FormIsValid) {
       Dispatch(
         UserRegisterHandler({
           Email: formik.values.Email,
           Password: formik.values.Password,
+          Navigate
         })
         
       );
