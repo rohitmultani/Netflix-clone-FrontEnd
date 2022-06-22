@@ -45,6 +45,7 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
        
       }},
       setError : (state , {payload}) => {
+        console.log(payload)
         state.error = payload;
       },
       setIsLoading: (state , {payload}) => {

@@ -1,21 +1,39 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box,  TextField , Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { UserLoginHandler } from "../Redux/middleware/UserDataActions";
+import AuthenticationSliceActions from "../Redux/AuthenticationSlice";
+import LoadingButton from '@mui/lab/LoadingButton';
+
 import "./Styles/style.css";
 
-const LargeButton = styled(Button)(({ theme }) => ({
+// const LargeButton = styled(Button)(({ theme }) => ({
+//   color: "#fff",
+//   backgroundColor: "#12C6B2",
+//   fontWeight: "500px",
+//   fontSize: "24px",
+//   minHeight:  "64px" ,
+//   borderRadius: "4px",
+//   padding: "0.75rem 25.333px"  ,
+//   Width: "450px" ,
+//   marginTop: "20px",
+//   "&:hover": {
+//     backgroundColor: "#12C6B2",
+//   },
+// }));
+
+const LargeButton = styled(LoadingButton)(({ theme }) => ({
   color: "#fff",
   backgroundColor: "#12C6B2",
   fontWeight: "500px",
   fontSize: "24px",
-  minHeight:  "64px" ,
+  minHeight: "64px",
   borderRadius: "4px",
-  padding: "0.75rem 25.333px"  ,
-  Width: "450px" ,
+  padding: "0.75rem 25.333px",
+  Width: "450px",
   marginTop: "20px",
   "&:hover": {
     backgroundColor: "#12C6B2",
@@ -33,17 +51,24 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const LoginForm
- = () => {
+const LoginForm = () => {
   const [EmailIsValid, setEmailIsValid] = useState(false);
   const [PasswordIsValid, setPasswordIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
   const Dispatch = useDispatch();
-
+  const isLoading = useSelector((state) => state.isLoading );
+  const requestError = useSelector((state) => state.error);
   const submitonHandler = (event) => {
     event.preventDefault();
     if (FormIsValid) {
       Dispatch(UserLoginHandler({userName: formik.values.Email , Password: formik.values.Password}));
+    }else{
+      formik.errors.Email = 'required'
+      formik.errors.Password = 'required'
+      formik.touched.Email = true;
+      formik.touched.Password = true;
+      
+      Dispatch(AuthenticationSliceActions.setError('please Fill the form first'))
     }
   };
 
@@ -135,14 +160,28 @@ const LoginForm
         FormHelperTextProps={{ style: { backgroundColor: "transparent" } }}
       />
 
-      <LargeButton type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
+      {/* <LargeButton type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
         <StyledLink
           to={FormIsValid && "/home"}
           style={{ color: "white", textDecoration: "none" }}
         >
           Next
         </StyledLink>
+      </LargeButton> */}
+
+        <StyledLink
+        to={FormIsValid  && "/Home"}
+        style={{ color: "white", textDecoration: "none" }}>
+      <LargeButton loading={isLoading} loadingIndicator='loading...'  type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
+          Next
       </LargeButton>
+        </StyledLink>
+
+
+        {requestError  && (
+        <Typography component="p" textAlign='center' sx={{color:'white' , width:'100%'}}>{requestError}</Typography>
+      )}
+
     </Box>
   );
 };

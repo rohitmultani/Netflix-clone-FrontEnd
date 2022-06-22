@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Box, Container  } from '@mui/system';
 import React from 'react';
 import classes from  '../Components/Styles/devices.module.css' ;
-import Device from '../Components/UI/Device';
+// import Device from '../Components/UI/Device';
 
 
 
