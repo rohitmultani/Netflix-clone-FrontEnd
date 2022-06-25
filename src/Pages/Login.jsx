@@ -17,7 +17,7 @@ const Login = () => {
     return (
         <Container
         maxWidth="sm"
-        sx={{ height: "100vh", boxSizing: "border-box", paddingTop: "5rem" , textAlign:'center  ' ,  backgroundColor:'rgba(7, 9, 17, 0.7)', marginBottom:'3rem'}}>
+        sx={{ height: "80vh", boxSizing: "border-box", paddingTop: "5rem" , textAlign:'center  ' ,  backgroundColor:'rgba(7, 9, 17, 0.7)', paddingBottom:'2rem', marginBottom:'3rem'}}>
             
             <Stack justifyContent='space-around' alignItems='center' alignContent='flex-start'  gap={2} sx={{maxWidth:'450px' , marginLeft:'2rem' , color:'#FFFFFF'}}>
             <Typography variant='p' sx={{fontSize: "1rem" , textAlign:'left' , color:'rgb(255 255 255 / 85%)' }} >STEP 1 OF 3</Typography>

@@ -1,16 +1,13 @@
 import axios from 'axios';
 import  AuthenticationSliceActions  from '../AuthenticationSlice';
 
-let {token} = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
+let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
 
 let config = {
     headers:{
          Authorization: token ? token : ''  
     }
   };
-
-
-  console.log(config.headers);
 
 
 
@@ -28,16 +25,15 @@ export const UserRegisterHandler = (userData) => {
             localStorage.setItem('token' , JSON.stringify(response.data.token))
             config.headers.Authorization = JSON.parse(localStorage.getItem('token'))
             userData.Navigate('/plandetails')
-            console.log(config.headers)
         }).catch((err) => {
             Dispatch(AuthenticationSliceActions.setIsLoading(false))
-            Dispatch(AuthenticationSliceActions.setError(  'Something went wrong' )) })
+            Dispatch(AuthenticationSliceActions.setError( err.response.data.message?  err.response.data.message :  'Something went wrong' )) })
     }
 }
 
 export const choosePlan = (userData) => {
 
-    console.log(config)
+
 
     
 
@@ -55,22 +51,28 @@ export const choosePlan = (userData) => {
         .catch( (error) => {
         Dispatch(AuthenticationSliceActions.setPlanError(true))   
         Dispatch(AuthenticationSliceActions.setIsLoading(false)) 
-        Dispatch(AuthenticationSliceActions.setError('something went wrong'))})
+
+        Dispatch(AuthenticationSliceActions.setError( error.response.data.message?  error.response.data.message :  'Something went wrong'))})
     }
 }
 
-export const UserLoginHandler = (userData) => {
+export const UserLoginHandler = ({userName , Password , Navigate} ) => {
 
     return async (Dispatch) => {
         Dispatch(AuthenticationSliceActions.setError(''))
         Dispatch(AuthenticationSliceActions.setIsLoading(true))
-        await axios.post('http://localhost:3001/user/login/',{email: userData.userName , password: userData.Password} , config)
+        await axios.post('http://localhost:3001/user/login/',{email: userName , password: Password} )
         .then((response) =>{
             Dispatch(AuthenticationSliceActions.setIsLoading(false))
-            localStorage.setItem('token' , JSON.stringify(response.data))})
+            Dispatch(AuthenticationSliceActions.logIn({token: response.data}))
+            localStorage.setItem('token' , JSON.stringify(response.data))
+            Navigate('/Home')
+        })
+        
         .catch((error) => {
+            console.log( error.response.data)
             Dispatch(AuthenticationSliceActions.setPlanError(true))    
-            Dispatch(AuthenticationSliceActions.setError('something went wrong'))
+            Dispatch(AuthenticationSliceActions.setError( error.response.data?  error.response.data :  'Something went wrong'))
             Dispatch(AuthenticationSliceActions.setIsLoading(false))})
         
     }
@@ -80,7 +82,7 @@ export const UserLoginHandler = (userData) => {
 export const creditCardHandler = (userData) => {
     
 
-    console.log('carddata' , userData)
+
     return async (Dispatch) => {
 
         Dispatch(AuthenticationSliceActions.setError(''))
@@ -99,26 +101,28 @@ export const creditCardHandler = (userData) => {
             Dispatch(AuthenticationSliceActions.setIsLoading(false))
             userData.Navigate('/choosedevice')} )
         .catch((error) => {   
-            Dispatch(AuthenticationSliceActions.setError('something went wrong'))
+            Dispatch(AuthenticationSliceActions.setError( error.response.data.message?  error.response.data.message :  'Something went wrong'))
             Dispatch(AuthenticationSliceActions.setIsLoading(false))
         })
     }
 }
 
 export const setUserDevice = (userDevice) => {
-    console.log(userDevice)
+
     const Navigate = userDevice.Navigate
     const data =  userDevice.device 
     return async (Dispatch) => {
         Dispatch(AuthenticationSliceActions.setIsLoading(true))
         Dispatch(AuthenticationSliceActions.setError(''))
-        await axios.post('http://localhost:3001/user/login' , data , config).then((res) => {
+        await axios.put('http://localhost:3001/user/device' , {device:data} , config)
+        .then((res) => {
         Dispatch(AuthenticationSliceActions.setUserDevice(data))
         Dispatch(AuthenticationSliceActions.setIsLoading(false))
         Navigate('/Home')
-        }).catch(() => {
+        Navigate('/Home')
+        }).catch((error) => {
          Dispatch(AuthenticationSliceActions.setIsLoading(false));
-         Dispatch(AuthenticationSliceActions.setError('Some Thing Went Wrong'));
+         Dispatch(AuthenticationSliceActions.setError( error.response.data.message?  error.response.data.message :  'Something went wrong'));
         })
     }
 }

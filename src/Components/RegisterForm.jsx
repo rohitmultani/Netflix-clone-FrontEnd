@@ -60,6 +60,7 @@ const RegisterForm = ({ classes }) => {
   const Dispatch = useDispatch();
   const requestError = useSelector((state) => state.error);
   const isLoading = useSelector((state) => state.isLoading);
+  const storedEmail = useSelector( (state) => state.Email )
   const Navigate = useNavigate()
 
   const submitonHandler = (event) => {
@@ -94,6 +95,8 @@ const RegisterForm = ({ classes }) => {
     } else if (!values.Email.includes("@")) {
       errors.Email = "Invalid email address";
       setEmailIsValid(false);
+    } else if (!values.Email.includes(".com")) {
+      errors.Email = "Invalid email address";
     } else {
       setEmailIsValid(true);
     }
@@ -101,8 +104,9 @@ const RegisterForm = ({ classes }) => {
     if (!values.Password) {
       errors.Password = "Required";
       setPasswordIsValid(false);
-    } else if (values.Password.length < 5) {
-      errors.Password = "minium password is 5 digits";
+    } else if (values.Password.length !== 6) {
+      console.log(values.Password.length)
+      errors.Password = "minium password is 6 digits";
       setPasswordIsValid(false);
     } else {
       setPasswordIsValid(true);
@@ -116,7 +120,7 @@ const RegisterForm = ({ classes }) => {
 
   const formik = useFormik({
     initialValues: {
-      Email: "",
+      Email: storedEmail? storedEmail : "",
       Password: "",
     },
     validate,
@@ -152,10 +156,10 @@ const RegisterForm = ({ classes }) => {
         onChange={formik.handleChange}
         error={!!formik.errors.Email && formik.touched.Email}
         helperText={formik.errors.Email}
-        value={formik.values.Email}
+        value={  formik.values.Email}
         onBlur={formik.handleBlur}
         FormHelperTextProps={{
-          style: { background: "transparent", color: "secondary" },
+          style: { background: "transparent", color: "red" },
         }}
       />
 
@@ -165,6 +169,7 @@ const RegisterForm = ({ classes }) => {
         label="password"
         color="secondary"
         placeholder="Enter a valid password"
+        type='password'
         InputLabelProps={{ style: { color: "white" } }}
         sx={{
           width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
@@ -175,7 +180,7 @@ const RegisterForm = ({ classes }) => {
         helperText={formik.errors.Password}
         value={formik.values.Password}
         onBlur={formik.handleBlur}
-        FormHelperTextProps={{ style: { backgroundColor: "transparent" } }}
+        FormHelperTextProps={{ style: { backgroundColor: "transparent" , color:'red' } }}
       />
 
         <StyledLink
@@ -190,7 +195,7 @@ const RegisterForm = ({ classes }) => {
   
 
       {requestError  && (
-        <Typography component="p" sx={{color:'white'}}>{requestError}</Typography>
+        <Typography component="p" color='#f50057' sx={{color:'white'}}>{requestError}</Typography>
       )}
     </Box>
   );

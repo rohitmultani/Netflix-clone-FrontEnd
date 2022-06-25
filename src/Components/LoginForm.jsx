@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch , useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { UserLoginHandler } from "../Redux/middleware/UserDataActions";
 import AuthenticationSliceActions from "../Redux/AuthenticationSlice";
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -56,12 +57,13 @@ const LoginForm = () => {
   const [PasswordIsValid, setPasswordIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
   const Dispatch = useDispatch();
+  const Navigate = useNavigate()
   const isLoading = useSelector((state) => state.isLoading );
   const requestError = useSelector((state) => state.error);
   const submitonHandler = (event) => {
     event.preventDefault();
     if (FormIsValid) {
-      Dispatch(UserLoginHandler({userName: formik.values.Email , Password: formik.values.Password}));
+      Dispatch(UserLoginHandler({userName: formik.values.Email , Password: formik.values.Password , Navigate}));
     }else{
       formik.errors.Email = 'required'
       formik.errors.Password = 'required'
@@ -141,7 +143,7 @@ const LoginForm = () => {
         helperText={formik.errors.Email}
         value={formik.values.Email}
         onBlur={formik.handleBlur}
-        FormHelperTextProps={{ style: { background: "transparent" , color:'secondary' } }}
+        FormHelperTextProps={{ style: { background: "transparent" , color:'red' } }}
       />
 
       <TextField
@@ -149,6 +151,7 @@ const LoginForm = () => {
         id="Password"
         label="password"
         color="secondary"
+        type='password'
         placeholder="Enter a valid password"
         InputLabelProps={{ style: { color: "white" } }}
         sx={{ width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'}, marginTop: "0.8rem" }}
@@ -157,17 +160,9 @@ const LoginForm = () => {
         helperText={formik.errors.Password}
         value={formik.values.Password}
         onBlur={formik.handleBlur}
-        FormHelperTextProps={{ style: { backgroundColor: "transparent" } }}
+        FormHelperTextProps={{ style: { backgroundColor: "transparent" , color:'red' } }}
       />
 
-      {/* <LargeButton type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
-        <StyledLink
-          to={FormIsValid && "/home"}
-          style={{ color: "white", textDecoration: "none" }}
-        >
-          Next
-        </StyledLink>
-      </LargeButton> */}
 
         <StyledLink
         to={FormIsValid  && "/Home"}
@@ -179,7 +174,7 @@ const LoginForm = () => {
 
 
         {requestError  && (
-        <Typography component="p" textAlign='center' sx={{color:'white' , width:'100%'}}>{requestError}</Typography>
+        <Typography component="p" textAlign='center' color='#f50057' sx={{color:'white' , width:'100%'}}>{requestError}</Typography>
       )}
 
     </Box>

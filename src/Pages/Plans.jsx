@@ -8,7 +8,7 @@ const Plans = () => {
   return (
     <Container
     maxWidth="sm"
-    sx={{ height: "100vh", boxSizing: "border-box", paddingTop: "6rem" }}
+    sx={{ height: "80vh", boxSizing: "border-box", paddingTop: "6rem" }}
   >
   
       <Stack justifyContent="space-around" alignItems="center" gap={2}>

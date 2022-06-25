@@ -7,7 +7,8 @@ const Payment = () => {
     return (
         <Container
         maxWidth="sm"
-        sx={{ height: "100vh", boxSizing: "border-box", paddingTop: "5rem" , color:"#FFFFFF" ,  backgroundImage:'linear-gradient(to bottom, rgba(7, 9, 17, 0.8) 5.88%, rgba(7, 9, 17, 0) 34.09%, rgba(7, 9, 17, 0) 99.57%)'}}>
+        sx={{ height: "80vh", boxSizing: "border-box", paddingTop: "5rem" , color:"#FFFFFF" ,  backgroundImage:'linear-gradient(to bottom, rgba(7, 9, 17, 0.9) 4.88%, rgba(7, 9, 17, 0.6) 34.09%, rgba(7, 9, 17, 0.5) 99.57%)' ,   paddingBottom:'1rem',
+        marginBottom:'2rem'}}>
   
       <Stack justifyContent="space-around" alignItems="center" alignContent="center" gap={2}>
         <Box sx={{ width: "auto", height: "auto" }}>

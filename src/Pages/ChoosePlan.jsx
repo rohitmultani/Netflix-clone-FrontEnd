@@ -61,16 +61,19 @@ const ChoosePlan = () => {
   const Navigate = useNavigate();
 
   const choosePlanHandler = () => {
+    
     Dispatch(choosePlan({ plan: userPlan, Navigate }));
   };
 
   return (
     <Container
-      maxWidth="lg"
+      maxWidth="md"
       sx={{
         color: "#FFFFFF",
         backgroundImage:
-          "linear-gradient(to bottom, rgba(7, 9, 17, 0.8) 5.88%, rgba(7, 9, 17, 0) 34.09%, rgba(7, 9, 17, 0) 99.57%)",
+          "linear-gradient(to bottom, rgba(7, 9, 17, 0.9) 4.88%, rgba(7, 9, 17, 0.6) 34.09%, rgba(7, 9, 17, 0.5) 99.57%)",
+          paddingBottom:'3rem',
+          marginBottom:'2rem'
       }}
     >
       <Box sx={{ minHeight: "100vh", padding: "2rem" }}>
@@ -167,7 +170,7 @@ const ChoosePlan = () => {
             alignItems="center"
           >
             {planError && error && (
-              <Typography textAlign="center" variant="p">
+              <Typography textAlign="center" color='#f50057' variant="p">
                 {error}
               </Typography>
             )}
