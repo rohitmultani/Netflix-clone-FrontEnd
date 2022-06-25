@@ -14,9 +14,10 @@ const CreditCard = () => {
         maxWidth="sm"
         sx={{ boxSizing: "border-box", paddingTop: "5rem" , color:'white' , 
         textAlign:'center',
-        backgroundImage:'linear-gradient(to bottom, rgba(7, 9, 17, 0.8) 5.88%, rgba(7, 9, 17, 0) 34.09%, rgba(7, 9, 17, 0) 99.57%)',
-        width:{ lg:'600px' , md:'450px' , sm:'400px' , xs:'auto' } 
-        
+        backgroundImage:'linear-gradient(to bottom, rgba(7, 9, 17, 0.9) 5.88%, rgba(7, 9, 17, 0.8) 34.09%, rgba(7, 9, 17, 0.4) 99.57%);',
+        width:{ lg:'600px' , md:'450px' , sm:'400px' , xs:'auto' } ,
+        paddingBottom:'3rem',
+        marginBottom:'2rem'
         }}>
   
       <Stack justifyContent="space-around" alignItems="center" alignContent="center" gap={2}>

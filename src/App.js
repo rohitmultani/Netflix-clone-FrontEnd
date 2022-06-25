@@ -2,7 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "./Components/Loader";
 import NavBar from "./Components/NavBar";
-import CssBaseline from "@mui/material/CssBaseline";
+import Footer from "./Components/Footer";
+// import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import { Theme } from "./styles/Theme";
 import { useEffect } from "react";
@@ -47,7 +48,7 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={Theme}>
-        <CssBaseline />
+        {/* <CssBaseline /> */}
         <Suspense fallback={<Loader />}>
           <BrowserRouter>
             <NavBar />
@@ -65,6 +66,7 @@ const App = () => {
               <Route path="/choosedevice" element={<Choosedevice />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <Footer />
           </BrowserRouter>
         </Suspense>
       </ThemeProvider>

@@ -244,6 +244,7 @@ const CreditForm = () => {
         color="secondary"
         placeholder="Enter a valid Name"
         InputLabelProps={{ style: { color: "white" } }}
+        FormHelperTextProps={{ style: { color: "red" } }}
         sx={{
           width: { lg: "450px", md: "300px", sm: "100%", xs: "auto" },
           marginTop: "0.8rem",
@@ -257,7 +258,7 @@ const CreditForm = () => {
 
       <Stack
         direction="row"
-        alignItems="center"
+        alignItems="baseline"
         sx={{
           width: "100%",
           padding: "0px",
@@ -275,6 +276,7 @@ const CreditForm = () => {
           color="secondary"
           placeholder="Enter a valid Name"
           InputLabelProps={{ style: { color: "white" } }}
+          FormHelperTextProps={{ style: { color: "red" } }}
           sx={{
             width: { lg: "300px", md: "200px", sm: "59%", xs: "auto" },
             marginTop: "0.8rem",
@@ -294,6 +296,7 @@ const CreditForm = () => {
           color="secondary"
           placeholder="CVV"
           InputLabelProps={{ style: { color: "white" } }}
+          FormHelperTextProps={{ style: { color: "red" } }}
           sx={{
             width: { lg: "140px", md: "100px", sm: "40%", xs: "auto" },
             marginTop: "0.8rem",
@@ -313,6 +316,7 @@ const CreditForm = () => {
         color="secondary"
         placeholder="Enter a valid Number"
         InputLabelProps={{ style: { color: "white" } }}
+        FormHelperTextProps={{ style: { color: "red" } }}
         sx={{
           width: { lg: "450px", md: "300px", sm: "100%", xs: "auto" },
           marginTop: "0.8rem",
@@ -322,22 +326,9 @@ const CreditForm = () => {
         helperText={formik.errors.phoneNumber}
         value={formik.values.phoneNumber}
         onBlur={formik.handleBlur}
-        inputProps={{ placeholder: { color: "yellow" } }}
+        
       />
 
-      {/* <LargeButton
-        type="submit"
-        size="large"
-        onClick={submitonHandler}
-        sx={{ minWidth: { lg: "450px", md: "300px", sm: "auto", xs: "auto" } }}
-      >
-        <StyledLink
-          to={FormIsValid && !requestError  && "/Home"}
-          style={{ color: "white", textDecoration: "none" }}
-        >
-          Next
-        </StyledLink>
-      </LargeButton> */}
 
       <StyledLink
         to={FormIsValid && !requestError && "/choosedevice"}
@@ -368,6 +359,7 @@ const CreditForm = () => {
         <Typography
           component="p"
           textAlign="center"
+          color='#f50057'
           sx={{ color: "white", width: "100%" }}
         >
           {requestError}

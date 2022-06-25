@@ -31,7 +31,7 @@ const Setup = () => {
 
     <Container
       maxWidth='xs'
-      sx={{ height: "90vh", boxSizing: "border-box", paddingTop: "3rem" , backgroundColor:'rgba(7, 9, 17, 0.7)', marginBottom:'3rem'  }}
+      sx={{ height: "90vh", boxSizing: "border-box", paddingTop: "3rem" , backgroundColor:'rgba(7, 9, 17, 0.7)', marginBottom:'3rem' , paddingBottom:'2rem'  }}
     >
       <Typography Variant="p" component='div' sx={{ fontSize: "1rem" , color:'#FFFFFF' , textAlign:'center' , paddingBottom: "3rem" }}>STEP 1 OF 3</Typography>
       <Stack justifyContent="center" alignItems="center" gap={2} >

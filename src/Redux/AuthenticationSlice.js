@@ -35,6 +35,7 @@ const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , F
     ,
     logOut: (state) => {
       state.IsloggedIn = false;
+      state.error = ''
       state.token = "";
       localStorage.setItem('token' , '');
       localStorage.clear()
