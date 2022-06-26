@@ -126,3 +126,22 @@ export const setUserDevice = (userDevice) => {
         })
     }
 }
+// export const CreateProfile= (userData) => {
+  
+//     return async (Dispatch) => {
+//         Dispatch(AuthenticationSliceActions.setError(''))
+//         Dispatch(AuthenticationSliceActions.setIsLoading(true))
+//         await axios.post('http://localhost:3001/user/register',{email:userData.Email , password: userData.Password} ).then( (response) => {
+//             localStorage.setItem("Authentication", JSON.stringify({email:userData.Email , password: userData.Password}))
+//             Dispatch(AuthenticationSliceActions.setError(''))
+//             Dispatch(AuthenticationSliceActions.setIsLoading(false))
+//             Dispatch(AuthenticationSliceActions.SignUp({token:response.data.token ,Email:userData.Email , Password: userData.Password }))
+//             Dispatch(AuthenticationSliceActions.logIn({token:response.data.token}))
+//             localStorage.setItem('token' , JSON.stringify(response.data.token))
+//             config.headers.Authorization = JSON.parse(localStorage.getItem('token'))
+//             userData.Navigate('/plandetails')
+//         }).catch((err) => {
+//             Dispatch(AuthenticationSliceActions.setIsLoading(false))
+//             Dispatch(AuthenticationSliceActions.setError( err.response.data.message?  err.response.data.message :  'Something went wrong' )) })
+//     }
+// }
