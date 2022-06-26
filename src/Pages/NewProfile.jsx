@@ -64,24 +64,23 @@ const LargeButton = styled(Button)(({ theme }) => ({
     p: 4,
     fontSize:'2rem' , fontWeight:'bold',
   };
-  
-  let {token} = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
+  let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
 
 let config = {
     headers:{
          Authorization: token ? token : ''  
     }
   };
-  
+  console.log(token)
 const NewProfile=(props)=> {
   // const accountOwner=useSelector((state)=>{
   //   return state
   //  })]
 
   const [users,setUsers]=useState([])
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   const id = localStorage.getItem("id"); //user id
-  const [name,setName]= useState('')
+  const [userName,setName]= useState('')
   const [email,setEmail]= useState('')
   const [password,setPassword]= useState('')
   const [idshow, setIdshow] = useState(""); //profile id
@@ -114,14 +113,19 @@ const NewProfile=(props)=> {
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
 
+  const showing = (profileId) => {
+    handleShow()
+    setIdshow(profileId)
+  }
     useEffect(()=>{
        loadUsers()
     },[])
 
     async function loadUsers() {
-      await fetch('http://localhost:3000/users', {
+      await fetch('http://localhost:3001/profile/one', {
+        method:"get",
         headers: {
-          "authorization": `${token}`
+          "Authorization": token
         }
       })
         .then(resp => resp.json())
@@ -133,21 +137,34 @@ const NewProfile=(props)=> {
   
     }
     // const loadUsers= async()=>{
-    //     const result=await axios.get('http://localhost:3000/users')
+    //     const result=await axios.get('http://localhost:3001/profile/one')
     //     console.log(result)
     //     setUsers(result.data)
     // }
+
+    // const createProfile= ({userName , Navigate} )=>{
+    //   e.preventDefault();
+    //   await axios.post("http://localhost:3001/profile",{name: userName},config)
+    //   .then( (response) => {
+    //    localStorage.setItem("Authentication", JSON.stringify({userName:user.userName}))
+    //     localStorage.setItem('token' , JSON.stringify(response.data.token))
+    //    config.headers.Authorization = JSON.parse(localStorage.getItem('token'))})
+    
+    //           })
+    //   }
+    
+    // }
     function createProfile (e){
-      let user={name,email,password}
+      let user={userName}
 
       e.preventDefault();
       
       console.warn("user", user)
   
-      fetch('http://localhost:3001/users', {
+      fetch('http://localhost:3001/profile', {
       method: 'POST',
       headers: {
-        "authorization": `${token}`
+        Authorization: token
       },
       body: JSON.stringify(user)
     })
@@ -162,11 +179,11 @@ const NewProfile=(props)=> {
   
     }
   
-    //edit profile
+    // //edit profile
     const handleEditProfile = () => {
       let userId = idshow
       console.log(userId)
-      let user = { name, email }
+      let user = { userName }
       console.log(user)
   
       fetch(``,
@@ -187,14 +204,14 @@ const NewProfile=(props)=> {
         })
     }
     //delete profile
-    const deleteUser =async id =>{
-      await axios.delete(`http://localhost:3000/users/${id}`)
-       loadUsers();
-    }
+    // const deleteUser =async id =>{
+    //   await axios.delete(`http://localhost:3000/users/${id}`)
+    //    loadUsers();
+    // }
     const deleteProfile = () => {
 
         console.log('delete')
-        //     fetch(`https://boiling-shelf-43809.herokuapp.com/team/${teamId}/deleteTeam`, {
+        //     fetch(``, {
         //   method: "delete",
         //   headers: {
         //     "authorization": `${token}`
@@ -202,8 +219,8 @@ const NewProfile=(props)=> {
         // }).then(res => res.json())
         //   .then(result => {
         //     console.log(result)
-        //     const newData = teams.filter(item => item._id !== teamId)
-        //     setTeams(newData)
+        //     const newData = users.filter(item => item._id !== p)
+        //     setUsers(newData)
         //   }).catch(err => console.log(err))
       }
       
@@ -229,13 +246,13 @@ const NewProfile=(props)=> {
             <Link to={`/users/${user.id}`}>
              <Icon icon="carbon:view" color="green" inline={true} style={{fontSize:'2rem'}} />
             </Link>
-            <Link to={`/users/edit/${user.id}`}>
-            <Icon icon="akar-icons:edit" color="lightblue" inline={true} style={{fontSize:'2rem'}} />
+            <Link to=''>
+            <Icon icon="akar-icons:edit" color="lightblue" inline={true} style={{fontSize:'2rem'}} onClick={() => showing(user.id)}/>
             </Link>
             <Link to=''>
             <Icon icon="ant-design:delete-outlined" color="red" inline={true} style={{fontSize:'2rem'}}  onClick={() => {
                           if (window.confirm('Do you want to delete this user?')) {
-                            deleteUser(user.id)
+                            deleteProfile(user.id)
                           }
                         }} />
             </Link>
@@ -292,31 +309,12 @@ const NewProfile=(props)=> {
               className="form-control form-control-lg"
               placeholder="Enter Your Name"
               name="name"
-              value={name}
+              value={userName}
               //onChange={e => onInputChange(e)}
                onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control form-control-lg"
-              placeholder="Enter Your E-mail Address"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Enter Your Password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          
           {/* <button className="primary">Add Profile</button> */}
        
   {/* </form> */}
@@ -339,7 +337,7 @@ const NewProfile=(props)=> {
                     <Modal.Body>
                       <div className="form-group">
                         <label style={{ "color": "black" ,fontSize: "25px" }}>User Name</label>
-                        <input type="text" className="form-control" value={name}  onChange={(e) => setName(e.target.value)} name="teamName" />
+                        <input type="text" className="form-control" value={userName}  onChange={(e) => setName(e.target.value)} name="teamName" />
                       </div>
                       <div className="form-group">
                         <label style={{ "color": "black" ,fontSize: "25px"}} >User Email</label>
