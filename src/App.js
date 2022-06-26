@@ -21,6 +21,11 @@ const Payment = lazy(() => import("./Pages/Payment"));
 const CreditCard = lazy(() => import("./Pages/CreditCard"));
 const PlanDetails = lazy(() => import("./Pages/PlanDetails"));
 const Choosedevice = lazy(() => import("./Pages/ChooseDevice"));
+const NewProfile=lazy(()=>import('./Pages/NewProfile'))
+const AddProfile=lazy(()=>import('./Components/Users/AddProfile'))
+const EditProfile=lazy(()=>import('./Components/Users/EditProfile'))
+const User=lazy(()=>import('./Components/Users/User'))
+
 
 const App = () => {
   const Dispatch = useDispatch();
@@ -64,6 +69,11 @@ const App = () => {
               <Route path="/payment" element={<Payment />} />
               <Route path="/creditCard" element={<CreditCard />} />
               <Route path="/choosedevice" element={<Choosedevice />} />
+
+              <Route path="/NewProfile" element={<NewProfile />} />
+              <Route path="/users/add" element={<AddProfile />} />
+              <Route path="/users/edit/:id" element={<EditProfile />} />
+              <Route path="/users/:id" element={<User />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

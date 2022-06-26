@@ -62,6 +62,16 @@ const NavBar = () => {
            </Link>
           </Stack>
         </Box>
+        <Stack direction="row" justifyContent="flex-end"
+            alignItems="center"
+            sx={{
+              paddingRight: "3rem"
+            }}>
+              <StyledLink to="/NewProfile">
+                  Users
+              </StyledLink>
+     
+    </Stack>
         <Box variant="div" sx={{ width: "100%", height: "100%" }}>
           <Stack
             direction="row"
