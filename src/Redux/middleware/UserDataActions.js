@@ -63,6 +63,7 @@ export const UserLoginHandler = ({userName , Password , Navigate} ) => {
         Dispatch(AuthenticationSliceActions.setIsLoading(true))
         await axios.post('http://localhost:3001/user/login/',{email: userName , password: Password} )
         .then((response) =>{
+            console.log(response);
             Dispatch(AuthenticationSliceActions.setIsLoading(false))
             Dispatch(AuthenticationSliceActions.logIn({token: response.data}))
             localStorage.setItem('token' , JSON.stringify(response.data))
