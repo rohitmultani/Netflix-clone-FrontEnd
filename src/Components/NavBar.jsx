@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useSelector , useDispatch } from 'react-redux';
 import  AuthenticationSliceActions  from '../Redux/AuthenticationSlice';
+import background from '../assets/2022.png';
 
 
 const StyledLink = styled(Link)`
@@ -30,7 +31,7 @@ const NavBar = () => {
         height: "5rem",
         marginLeft: "auto",
         marginRight: "auto",
-        background: "transparent",
+        backgroundColor:'transparent',
         paddingLeft:'1rem',
         paddingRight:'1rem'
       }}

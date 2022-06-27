@@ -64,7 +64,8 @@ const LargeButton = styled(Button)(({ theme }) => ({
     p: 4,
     fontSize:'2rem' , fontWeight:'bold',
   };
-  let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
+  let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).token : ''
+  console.log(JSON.stringify(token));
 
 let config = {
     headers:{
@@ -138,12 +139,21 @@ const NewProfile=(props)=> {
     }
     
     
-    function createProfile (e){
+
+    // }
+    const createProfile=async (e)=>{
+
       let user={userName}
 
       e.preventDefault();
       
       console.warn("user", user)
+      const res = await axios.post('http://localhost:3001/profile' , user,{
+        headers:{
+          Authorization: token
+        }
+      })
+      console.log(res);
   
       fetch('http://localhost:3001/profile', {
       method: 'POST',
@@ -159,6 +169,21 @@ const NewProfile=(props)=> {
         loadUsers()
       }
       ))
+
+    //   fetch('http://localhost:3001/profile', {
+    //   method: 'POST',
+    //   headers: {
+    //     Authorization: token
+    //   },
+    //   body: JSON.stringify(user)
+    // })
+    //   .then((result => {
+    //     console.warn(result)
+    //     console.log(result.data)
+    //     setUsers(users)
+    //     loadUsers()
+    //   }
+    //   ))
       handleClose2()
   
     }

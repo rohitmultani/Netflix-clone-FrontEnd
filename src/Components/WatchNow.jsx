@@ -7,7 +7,7 @@ const WatchNow = () => {
     return (
         <Box sx={{height:'100vh' , color:'white'}}>
             {/* inner Stack of text and image container */}
-            <Stack justifyContent='center' alignItems='center' gap={2} sx={{width:'100%' , height:'100%'}}   >
+            <Stack justifyContent='center' alignItems='center' gap={2} sx={{width:'100%' , height:'100%' ,  backgroundColor:'#0A0D18'}}   >
                 <Box sx={{ backgroundImage:`url(${tv})` , backgroundRepeat:'no-repeat' , backgroundSize:'contain' , width:'500px' , height:'390px'}}>
                    
                 </Box>
