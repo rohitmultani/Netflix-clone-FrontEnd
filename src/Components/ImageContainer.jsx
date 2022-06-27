@@ -8,7 +8,7 @@ import secondPerson from '../assets/wallpapersden1.png';
 const ImageContainer = () => {
     return (
         //main container
-        <Box sx={{ fontFamily:'Poppins' , color:'white' ,  minHeight:'100vh',  backgroundImage: 'linear-gradient(to left,rgba(10, 13, 24, 0.9) 40.88%,rgba(10, 13, 24, 0.6) 84.09%, rgba(10, 13, 24, 0.8) 99.57%)'  }}>
+        <Box sx={{ fontFamily:'Poppins' , color:'white' ,  minHeight:'100vh',  backgroundImage: 'linear-gradient(to left,rgba(10, 13, 24, 0.9) 40.88%,rgba(10, 13, 24, 0.6) 84.09%, rgba(10, 13, 24, 0.8) 99.57%)',  backgroundColor:'#0A0D18'  }}>
         {/* grid tag */}
         <Grid container sx={{height:'100%'}} >
          {/* first item */}

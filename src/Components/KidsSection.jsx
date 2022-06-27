@@ -9,7 +9,7 @@ import cover from '../assets/2.png';
 
 const KidsSection = () => {
     return (
-        <Box  sx={{ color:'white' ,  height:'100vh' , width:'100%' }}>
+        <Box  sx={{ color:'white' ,  height:'100vh' , width:'100%' ,  backgroundColor:'#0A0D18'}}>
             {/* main Stack container */}
 
             <Stack direction='row'  justifyContent='space-evenly' alignItems='center' sx={{width:'100%' , height:'100%'}} flexWrap='wrap'>
