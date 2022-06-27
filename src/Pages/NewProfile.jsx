@@ -151,9 +151,7 @@ const NewProfile=(props)=> {
    }
 
   
-    function createProfile (e){
-    }
-    
+   
     
 
     // }
