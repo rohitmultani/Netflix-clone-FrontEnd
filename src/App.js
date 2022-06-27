@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "./Components/Loader";
-import NavBar from "./Components/NavBar";
+// import NavBar from "./Components/NavBar/Navbar";
+import NavBar from "./Components/Navbar/Navbar"
 import Footer from "./Components/Footer";
 // import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
@@ -9,8 +10,12 @@ import { Theme } from "./styles/Theme";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import AuthenticationSliceActions from "./Redux/AuthenticationSlice";
+import "./app.css"
 
 const Home = lazy(() => import("./Pages/Home"));
+const HomeA =lazy(()=>import("./Pages/home/HomeA"))
+const Movies =lazy(()=>import("./Pages/Movies/Movies"))
+const Watch =lazy(()=>import("./Pages/movie/Movie"))
 const Login = lazy(() => import("./Pages/Login"));
 const Register = lazy(() => import("./Pages/Register"));
 const NotFound = lazy(() => import("./Pages/NotFound"));
@@ -59,8 +64,10 @@ const App = () => {
             <NavBar />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/Home" element={<Home />} />
-              <Route path="/Login" element={<Login />} />
+              <Route path="/home" element={<HomeA />} />
+              <Route path="/Movies" element={<Movies />} />
+              <Route path="/watch/:id" element={<Watch />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/setup" element={<Setup />} />
               <Route path="/plandetails" element={<PlanDetails />} />

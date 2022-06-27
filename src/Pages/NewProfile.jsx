@@ -64,13 +64,11 @@ const LargeButton = styled(Button)(({ theme }) => ({
     p: 4,
     fontSize:'2rem' , fontWeight:'bold',
   };
-//   let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : ''
 
-// let config = {
-//     headers:{
-//          Authorization: token ? token : ''  
-//     }
-//   };
+
+
+  let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).token : ''
+  console.log(JSON.stringify(token));
 
 const NewProfile=(props)=> {
   // const accountOwner=useSelector((state)=>{
@@ -136,6 +134,7 @@ const NewProfile=(props)=> {
 //     }
 //         )
   
+
 //     }
    function loadUsers(){
         axios.get('http://localhost:3001/profile/one',
@@ -153,6 +152,16 @@ const NewProfile=(props)=> {
 
   
     function createProfile (e){
+    }
+    
+    
+
+    // }
+    const createProfile=async (e)=>{
+
+      let user={userName}
+
+
       e.preventDefault();
       axios.post('http://localhost:3001/profile' ,{userName},
        { headers:
@@ -172,12 +181,34 @@ const NewProfile=(props)=> {
 
     //   e.preventDefault();
       
-    //   console.warn("user", user)
+
+      console.warn("user", user)
+      const res = await axios.post('http://localhost:3001/profile' , user,{
+        headers:{
+          Authorization: token
+        }
+      })
+      console.log(res);
   
+      fetch('http://localhost:3001/profile', {
+      method: 'POST',
+      headers: {
+        'Authorization': token
+      },
+      body: JSON.stringify(user)
+    })
+      .then((result => {
+        console.warn(result)
+        console.log(result.data)
+        setUsers(users)
+        loadUsers()
+      }
+      ))
+
     //   fetch('http://localhost:3001/profile', {
     //   method: 'POST',
     //   headers: {
-    //    "Authorization": `${token}`
+    //     Authorization: token
     //   },
     //   body: JSON.stringify(user)
     // })
@@ -189,6 +220,7 @@ const NewProfile=(props)=> {
     //   }
     //   ))
        handleClose2()
+
   
     }
   
