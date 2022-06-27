@@ -136,24 +136,8 @@ const NewProfile=(props)=> {
         )
   
     }
-    // const loadUsers= async()=>{
-    //     const result=await axios.get('http://localhost:3001/profile/one')
-    //     console.log(result)
-    //     setUsers(result.data)
-    // }
-
-    // const createProfile= ({userName , Navigate} )=>{
-    //   e.preventDefault();
-    //   await axios.post("http://localhost:3001/profile",{name: userName},config)
-    //   .then( (response) => {
-    //    localStorage.setItem("Authentication", JSON.stringify({userName:user.userName}))
-    //     localStorage.setItem('token' , JSON.stringify(response.data.token))
-    //    config.headers.Authorization = JSON.parse(localStorage.getItem('token'))})
     
-    //           })
-    //   }
     
-    // }
     function createProfile (e){
       let user={userName}
 
@@ -164,7 +148,7 @@ const NewProfile=(props)=> {
       fetch('http://localhost:3001/profile', {
       method: 'POST',
       headers: {
-        Authorization: token
+        'Authorization': token
       },
       body: JSON.stringify(user)
     })
